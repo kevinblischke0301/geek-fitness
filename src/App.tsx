@@ -1,4 +1,5 @@
-import {ChangeEvent, useEffect, useState} from 'react'
+import {ChangeEvent, useState} from 'react'
+import Logo from "../geek.png"
 import "./App.css"
 interface InformationNewSubnets {
     subnetMask: string,
@@ -14,9 +15,7 @@ function App() {
   const [subnetMask, setSubnetMask] = useState("255.255.255.0");
   const [desiredSubnets, setDesiredSubnets] = useState("4");
   const [subnetsIpInformation, setSubnetsIpInformation] = useState<InformationNewSubnets[]>([]);
-    useEffect(() => {
-        console.log('Updated subnetsIpInformation:', subnetsIpInformation);
-    }, [subnetsIpInformation]);
+
     const handleChangeIpAddress = (event: ChangeEvent<HTMLInputElement>) =>{
         setIpAddress(event.target.value)
     }
@@ -129,33 +128,36 @@ function App() {
   }
 
     return (
-        <div className="app-container">
-            <div className="input-container">
-                <h1>IP Address Calculator</h1>
-                <label>
-                    IP Address:
-                    <input type="text" onChange={handleChangeIpAddress} value={ipAddress}/>
-                </label>
-                <label>
-                    Subnet Mask:
-                    <input type="text" onChange={handleChangeSubnetMask} value={subnetMask}/>
-                </label>
-                <label>
-                Desired Subnets:
-                    <input type="number" min={2} onChange={handleChangeDesiredSubnets} value={desiredSubnets}/>
-                </label>
-                <button onClick={handleShowIpAddress}>Calculate Subnets</button>
-            </div>
-            <div className="subnets-container">
-                {renderIpInformation()}
+        <div className="main-container">
+            <img className="img-logo" alt="logo" src={Logo}/>
+
+            <div className="app-container">
+                <div className="input-container">
+                    <h1>IP Address Calculator</h1>
+                    <label>
+                        IP Address:
+                        <input type="text" onChange={handleChangeIpAddress} value={ipAddress}/>
+                    </label>
+                    <label>
+                        Subnet Mask:
+                        <input type="text" onChange={handleChangeSubnetMask} value={subnetMask}/>
+                    </label>
+                    <label>
+                        Desired Subnets:
+                        <input type="number" min={2} onChange={handleChangeDesiredSubnets} value={desiredSubnets}/>
+                    </label>
+                    <button onClick={handleShowIpAddress}>Calculate Subnets</button>
+                </div>
+                <div className="subnets-container">
+                    {renderIpInformation()}
+                </div>
             </div>
         </div>
+
     )
 }
 
 export default App
 
 
-// TODO: Fix bug on setting the state
-// TODO: Fix calculateAvailableRanges
 
