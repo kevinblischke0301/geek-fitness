@@ -1,6 +1,7 @@
 import {ChangeEvent, useState} from 'react'
 import Logo from "../geek.png"
 import "./App.css"
+
 interface InformationNewSubnets {
     subnetMask: string,
     ipGateway: string,
